@@ -1403,6 +1403,12 @@ public partial class Microbe
 
         // TODO: should this be cleared each time or only when the chemoreception update interval has elapsed?
         activeCompoundDetections.Clear();
+
+        // If part of a colony and a leader, need to also handle the chemoreceptor lines
+        // of other members.
+        if (Colony != null) {
+            PerformForOtherColonyMembersIfWeAreLeader(m => m.HandleChemoreceptorLines(delta));
+        }
     }
 
     /// <summary>
